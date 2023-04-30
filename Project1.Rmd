@@ -1,0 +1,65 @@
+---
+title: "Untitled"
+author: "Nuo Chen"
+date: "2023-04-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE,
+	warning = FALSE)
+library(tidyverse)
+library(rstanarm)
+library(magrittr)
+library(ggplot2)
+```
+
+
+# Abstract
+
+# Introduction
+
+## Data
+
+
+| column names      | description                                     |
+| :--               | :-----                                          |
+
+
+
+# Method
+
+## Data Preparation
+
+
+```{r, include=FALSE}
+## Read the data
+```
+
+## Exploratory Data Analysis
+
+## Modeling
+
+
+\newpage
+
+# Result
+
+## Interpretation
+
+## Discussion
+
+
+# Reference
+
+
+\newpage
+
+# Appendix
+
+## Exploratory Data Analysis
+
+
+```{r include=FALSE}
+```
+
