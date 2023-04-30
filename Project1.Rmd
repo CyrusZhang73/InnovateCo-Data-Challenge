@@ -34,6 +34,7 @@ library(ggplot2)
 
 ```{r, include=FALSE}
 ## Read the data
+pers_consum = read.csv("/Personal_Consumption_Expenditures.csv")
 ```
 
 ## Exploratory Data Analysis
