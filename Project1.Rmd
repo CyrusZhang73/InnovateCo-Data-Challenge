@@ -34,10 +34,27 @@ library(ggplot2)
 
 ```{r, include=FALSE}
 ## Read the data
-pers_consum = read.csv("/Personal_Consumption_Expenditures.csv")
+pers_consum = read.csv("Personal_Consumption_Expenditures.csv") %>% 
+  filter(GeoName == "United States")
+gasoline_proce = read.csv("Gasoline_Prices_in_Colorado.csv")
 ```
 
 ## Exploratory Data Analysis
+
+```{r}
+pers_consum %>%
+  ggplot(aes(x=Year, y=Personal.consumption.expenditures)) + 
+  geom_bar(stat="identity")
+
+pers_consum %>% 
+  ggplot(aes(x=Year, y=Personal.consumption.expenditures)) + 
+  geom_bar(stat="identity")
+pers_consum %>% 
+  ggplot(aes(x=Year, y=Gasoline.and.other.energy.goods)) + 
+  geom_bar(stat="identity")
+
+```
+
 
 ## Modeling
 
