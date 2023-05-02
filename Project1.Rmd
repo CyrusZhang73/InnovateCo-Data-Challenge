@@ -22,9 +22,6 @@ library(ggplot2)
 ## Data
 
 
-| column names      | description                                     |
-| :--               | :-----                                          |
-
 ```{r}
 data <-read.csv("solar_Resource_in_Colorado.csv")
 data$V1[1]
@@ -48,6 +45,40 @@ write.csv(fulldata,file="solar_in_colorado.csv")
 ```
 ```{r}
 solardata<-read.csv("solar_in_colorado.csv")
+```
+
+
+
+```{r}
+elec_vehicle_2021 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2021", skip = 1)
+elec_vehicle_2020 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2020", skip = 1)
+elec_vehicle_2019 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2019", skip = 1)
+elec_vehicle_2018 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2018", skip = 1)
+elec_vehicle_2017 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2017", skip = 1)
+elec_vehicle_2016 = readxl::read_xlsx("Light-Duty Vehicle Registration Counts by State and Fuel Type.xlsx",sheet="2016", skip = 1)
+
+cars_colorado = rbind(elec_vehicle_2016[6,c(2,3,4,5,6,7,11,12)],elec_vehicle_2017[6,c(2,3,4,5,6,7,11,12)],elec_vehicle_2018[6,c(2,3,4,5,6,7,11,12)],elec_vehicle_2019[6,c(2,3,4,5,6,7,11,12)],elec_vehicle_2020[6,c(2,3,4,5,6,7,11,12)],elec_vehicle_2021[6,c(2,3,4,5,6,7,11,12)])
+cars_colorado$Year = c(2016:2021)
+
+p_2016 = (elec_vehicle_2016[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2016[,c(2,3,4,5,6,7,11,12)]))[6,]
+p_2017 = (elec_vehicle_2017[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2017[,c(2,3,4,5,6,7,11,12)]))[6,]
+p_2018 = (elec_vehicle_2018[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2018[,c(2,3,4,5,6,7,11,12)]))[6,]
+p_2019 = (elec_vehicle_2019[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2019[,c(2,3,4,5,6,7,11,12)]))[6,]
+p_2020 = (elec_vehicle_2020[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2020[,c(2,3,4,5,6,7,11,12)]))[6,]
+p_2021 = (elec_vehicle_2021[,c(2,3,4,5,6,7,11,12)]/rowSums(elec_vehicle_2021[,c(2,3,4,5,6,7,11,12)]))[6,]
+
+percentage_in_US = rbind(p_2016, p_2017, p_2018, p_2019, p_2020, p_2021)
+percentage_in_US$Year = c(2016:2021)
+```
+
+```{r}
+library(sf)
+library(leaflet)
+# Read the data file
+polygons <- st_read("Wind Potential for Colorado 2014.geojson")
+leaflet() %>%
+  addTiles() %>%
+  addPolygons(data = polygons)
 ```
 
 # Method
