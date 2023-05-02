@@ -25,7 +25,30 @@ library(ggplot2)
 | column names      | description                                     |
 | :--               | :-----                                          |
 
+```{r}
+data <-read.csv("solar_Resource_in_Colorado.csv")
+data$V1[1]
+```
 
+
+```{r}
+lat_string<-sub(".*-\\s*([^ ]*).*", "\\1", data$V1)
+options(digits=17)
+lat<-as.double(lat_string)
+```
+```{r}
+half<-sub(",.*", "", data$V1)
+lng_string<-sub(".*\\s([^\\s]*)$", "\\1", half)
+options(digits=16)
+lng<-as.double(lng_string)
+```
+```{r}
+fulldata<-cbind(lat,lng,data$V2)
+write.csv(fulldata,file="solar_in_colorado.csv")
+```
+```{r}
+solardata<-read.csv("solar_in_colorado.csv")
+```
 
 # Method
 
